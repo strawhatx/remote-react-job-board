@@ -1,0 +1,64 @@
+  body {
+  margin: 0; 
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a, a:link, a:visited, a:hover, a:active { text-decoration: none; color: inherit; }
+
+.small-links a { 
+  font-size: 13px;  
+  color: lightskyblue;
+  text-decoration: underline;
+}
+
+input:focus,textarea:focus,.form-control:focus{
+  outline: none !important;
+  box-shadow: none !important;
+ }
+ 
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.card.card-hover-shadow {
+  transition: 0.3s;
+  box-shadow: 0px 6px 12px rgb(140 152 164 / 8%);
+  border: 0.0625rem solid rgba(231, 234, 243, 0.7);
+}
+
+.card.card-hover-shadow:hover {
+  box-shadow: 0px 6px 12px rgb(140 152 164 / 25%) !important;
+}
+
+.card .card-text-preview {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.fs-7 {
+  font-size: small;
+}
+
+.fs-8 {
+  font-size: smaller;
+}
