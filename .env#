@@ -1,6 +1,6 @@
 // .env
 
-CONNECTION_STRING=[mongodb URI]
+CONNECTION_STRING= 'mongodb://127.0.0.1:27017/REACTBOARD?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.7.1'
 
 NODE_ENV=development
 PORT=
