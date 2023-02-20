@@ -7,8 +7,6 @@ import Register from "./pages/register/Index";
 import ForgotPassword from "./pages/forgot-password/Index";
 import UserProfile from "./pages/profile/Index";
 import { ThemeProvider } from "react-bootstrap";
-import Search from "./pages/search/Index";
-import Comments from "./pages/comments/Index";
 
 const App = () => {
   return (
@@ -65,20 +63,7 @@ const App = () => {
               />
             }
           />
-          <Route
-            exact
-            path="/search"
-            element={
-              <Layout children={<Search />} hasNav={true} hasFooter={true} />
-            }
-          />
-          <Route
-            exact
-            path="/comments/:postId"
-            element={
-              <Layout children={<Comments />} hasNav={true} hasFooter={true} />
-            }
-          />
+          
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

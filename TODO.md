@@ -1,19 +1,10 @@
 #TODO
 
-* [ ] Find a stock API
-    * [ ] ALPHA VANTAGE
-
-    * [ ] www.coingecko.com
+* [ ] Revise landing page to look  like a job board
 
 * [ ] Build a backend 
-    * [ ] Node.JS, Socket.io
+    * [ ] Node.JS, Mongoose
 
-* [ ] Create UI React, Chart.js
-
-    * [ ] Real time price
-
-    * [ ] chart with real time updates and historical data
-
-    * [ ] List of currencies/stocks with crud functionality
+* [ ] Create UI React
 
 

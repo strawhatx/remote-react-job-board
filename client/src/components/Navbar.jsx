@@ -36,25 +36,24 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Brand href="/">
             <h5 className="align-right me-3 mb-0">
-              <span className="border border-2 rounded-circle p-1">
-                <strong>RP</strong>
-              </span>{" "}
-              Remote React Job Board
+              <span className="p-3">
+                <strong>REACTDEVS</strong>
+              </span>
             </h5>
           </Navbar.Brand>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link className="me-3" href="/">
-                Home
+              <Nav.Link className="me-3" href="/developers">
+                Developers
+              </Nav.Link>
+              
+              <Nav.Link className="me-3" href="/developers">
+                Pricing
               </Nav.Link>
 
-              {currentUser && (
-                <Nav.Link className="me-3" href="/search">
-                  Search
-                </Nav.Link>
-              )}
-
-              {currentUser && <Nav.Link href="/my-account">Account</Nav.Link>}
+              <Nav.Link className="me-3" href="/developers">
+                Learn
+              </Nav.Link>
             </Nav>
 
             {!currentUser && (

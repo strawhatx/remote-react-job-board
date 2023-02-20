@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import reddit_img from "../../../assets/images/reddit-search.png";
 
 const HomeView = () => {
   return (
@@ -33,15 +32,6 @@ const HomeView = () => {
                   Get Started
                 </Button>
               </div>
-            </Col>
-            <Col className="d-flex justify-content-end">
-              <img
-                src={reddit_img}
-                className="rounded"
-                width="600"
-                height="500"
-                alt="app-previews"
-              ></img>
             </Col>
           </Row>
         </Container>

@@ -1,0 +1,45 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.ts",
+  "scripts": {
+    "client": "npm start --prefix client",
+    "server": "node server/index.ts",
+    "dev-server": "nodemon server/index.ts",
+    "dev": "concurrently \"npm run dev-server\" \"npm run client\" --exec babel-node --presets babel-preset-env",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "rm -rf build/ && prettier --write source/ && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-node": "*",
+    "babel-preset-env": "^1.7.0",
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/ejs": "^3.1.0",
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
+    "@types/nodemailer": "^6.4.4",
+    "@types/validator": "^13.7.1"
+  }
+}
