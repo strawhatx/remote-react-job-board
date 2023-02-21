@@ -11,7 +11,7 @@ const LoginView = () => {
       <div className="py-10">
         <Container
           fluid="xs"
-          className="d-flex justify-content-center align-items-center flex-column bg-light text-dark"
+          className="login d-flex justify-content-center align-items-center flex-column bg-light text-dark"
           style={{ height: "100vh" }}
         >
           <Card style={{ width: "30rem" }}>

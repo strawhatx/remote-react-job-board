@@ -61,7 +61,7 @@ const RegisterForm = ({ setMessage }) => {
     >
       {({ errors, touched, values }) => (
         <Form>
-       <div className="form-group mt-4">
+       <div className="form-group">
             <Field
               id="dev"
               name="role"
@@ -160,7 +160,7 @@ const RegisterForm = ({ setMessage }) => {
             </div>
           </div>
 
-          <div className="d-flex justify-content-end mt-8">
+          <div className="d-flex justify-content-end mt-5">
             <Button
               variant="primary"
               className="w-full px-4 py-2 tracking-wide text-white"

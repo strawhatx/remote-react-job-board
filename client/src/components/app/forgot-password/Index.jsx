@@ -17,8 +17,8 @@ const ForgotPasswordView = () => {
         >
           <Card style={{ width: "30rem" }}>
             <Card.Body className="d-flex justify-content-center align-items-center flex-column">
-              <h6 className="mt-2 mb-1">Enter Email</h6>
-              <p className="pb-2 fw-semibold text-dark">To retrieve password</p>
+              <h2 className="mt-2 mb-1">Enter Email</h2>
+              <h6 className="pb-2 text-muted">To retrieve your password</h6>
 
               {message && (
                 <Notification
@@ -28,7 +28,7 @@ const ForgotPasswordView = () => {
                 />
               )}
 
-              <div className="w100 pt-1">
+              <div className="w-100 pt-1">
                 <ForgotPasswordForm setMessage={setMessage} />
               </div>
             </Card.Body>

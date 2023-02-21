@@ -40,7 +40,7 @@ const ForgotPasswordForm = ({ setMessage }) => {
     >
       {({ errors, touched }) => (
         <Form>
-          <div className="form-group mt-4">
+          <div className="form-group mb-4">
             <label
               htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
@@ -56,7 +56,7 @@ const ForgotPasswordForm = ({ setMessage }) => {
             {errors.email && touched.email ? <div>{errors.email}</div> : null}
           </div>
 
-          <div className="d-flex justify-content-end mt-8">
+          <div className="d-flex justify-content-end mt-2">
             <Button
               variant="primary"
               className="w-full px-4 py-2 tracking-wide text-white"

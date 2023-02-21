@@ -69,7 +69,7 @@ const LoginForm = ({ setMessage }) => {
           <div className="form-group mt-3">
             <div className="d-flex flex-column align-items-end mb-1">
               <Link
-                className="text-decoration-none align-content-end text-dark"
+                className="forgot text-decoration-none align-content-end text-dark"
                 to={`/forgot-password`}
               >
                 Forgot Password?
@@ -107,7 +107,7 @@ const LoginForm = ({ setMessage }) => {
             </div>
           </div>
 
-          <div className="d-flex justify-content-end mt-8">
+          <div className="d-flex justify-content-end mt-2">
             <Button
               variant="primary"
               className="w-full px-4 py-2 tracking-wide text-white"

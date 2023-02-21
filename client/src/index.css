@@ -72,3 +72,15 @@ button.navbar-toggler {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+
+/* HOME */
+
+.hero .hero-text {
+  max-width: 40rem;
+}
+
+/* LOGIN */
+
+.login .forgot:hover {
+  color: #0d6efd !important
+}
