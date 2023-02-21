@@ -75,6 +75,7 @@ export class AccountController {
                 email: req.body.email,
                 displayName: req.body.email,
                 isSubscribed: req.body.isSubscribed,
+                role: req.body.role,
             }
 
             const created = await User.create(user);

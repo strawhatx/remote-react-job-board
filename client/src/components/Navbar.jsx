@@ -37,7 +37,7 @@ const AppNavbar = () => {
           <Navbar.Brand href="/">
             <h5 className="align-right me-3 mb-0">
               <span className="p-3">
-                <strong>REACTDEVS</strong>
+                <strong>REACTBOARD</strong>
               </span>
             </h5>
           </Navbar.Brand><Navbar.Toggle aria-controls="responsive-navbar-nav" />

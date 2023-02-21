@@ -16,7 +16,7 @@ import {
 export const useAuthStore = create((set) => ({
   currentUser: null,
   loading: true,
-  register: (email, password, subscribed) => {
+  register: (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   },
 

@@ -16,8 +16,8 @@ const LoginView = () => {
         >
           <Card style={{ width: "30rem" }}>
             <Card.Body className="d-flex justify-content-center align-items-center flex-column">
-              <h6 className="mt-2 mb-1">Welcome back</h6>
-              <p className="pb-2 fw-semibold text-muted">Please sign in</p>
+              <h2 className="mt-2 mb-2">Welcome back</h2>
+              <h6 className="pb-1 text-muted">Please sign in</h6>
 
               {message && (
                 <Notification

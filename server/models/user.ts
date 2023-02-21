@@ -10,6 +10,7 @@ export interface IUser {
     displayName: string,
     profileImage: string,
     isSubscribed: boolean,
+    role: string,
 }
 
 /**
@@ -34,6 +35,7 @@ class UserSchema {
                 displayName: {
                     type: String,
                     required: [true, "display name is required"],
+                    trim: true,
                 },
                 profileImage: {
                     type: String,
@@ -45,6 +47,12 @@ class UserSchema {
                     required: true,
                     default: false,
                 },
+                role: {
+                    type: String,
+                    required: true,
+                    trim: true,
+                    enum: ['DEVELOPER', 'COMPANY'],
+                }
             },
             { timestamps: true }
         );

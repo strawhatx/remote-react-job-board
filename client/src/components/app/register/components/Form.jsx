@@ -18,7 +18,11 @@ const RegisterForm = ({ setMessage }) => {
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Password Confirmation is required"),
-    subscribe: Yup.boolean(),
+    subscribe: Yup.string(),
+    role: Yup.string().oneOf(
+      ["DEVELOPER", "COMPANY"], 
+      "User Type Selection is required"
+      ),
     acceptTerms: Yup.bool().oneOf(
       [true],
       "Accept Terms & Conditions is required"
@@ -31,16 +35,18 @@ const RegisterForm = ({ setMessage }) => {
         email: "",
         password: "",
         confirmPassword: "",
+        role: "",
         subscribe: false,
         acceptTerms: false,
       }}
       validationSchema={schema}
       onSubmit={(values) => {
-        register(values.email, values.password, values.subscribe)
+        register(values.email, values.password)
           .then(async (response) => {
             await axios.post("/accounts/", {
               uid: response.user.uid,
               email: response.user.email,
+              role: values.role,
               isSubscribed: values.subscribe,
             });
           })
@@ -48,13 +54,38 @@ const RegisterForm = ({ setMessage }) => {
             setMessage({
               title: "ERROR",
               severity: "error",
-              text: "Registration failed please contacct us for assistance.",
+              text: "Registration failed please contact us for assistance.",
             });
           });
       }}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, values }) => (
         <Form>
+       <div className="form-group mt-4">
+            <Field
+              id="dev"
+              name="role"
+              className="btn-check"
+              type="radio"
+              value="DEVELOPER"
+              checked
+            />
+            <label 
+            className="btn btn-outline-primary w-full px-5 py-2 tracking-wide me-2" for="dev">Im a JobSeeker</label>
+            
+            <Field
+              id="company"
+              name="role"
+              className="btn-check"
+              type="radio"
+              value="COMPANY"
+
+            />
+            <label class="btn btn-outline-primary w-full px-5 py-2 tracking-wide" for="company">We're a Company</label>
+            
+            {errors.role && touched.role ? <div>{errors.role}</div> : null}
+          </div>
+
           <div className="form-group mt-4">
             <label
               htmlFor="email"

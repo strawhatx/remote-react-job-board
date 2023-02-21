@@ -72,12 +72,3 @@ button.navbar-toggler {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
-
-
-
-/* HOME PAGE */
-
-.hero h2 .emphasis {
-  color: lightblue;
-  font-weight: 400;
-}

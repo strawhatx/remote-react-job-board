@@ -10,7 +10,7 @@ const Layout = ({ children, hasNav, hasFooter }) => {
       <main>{children}</main>
 
       {hasFooter && (
-        <footer className="text-center">Remote React Job Board Created by ME!</footer>
+        <footer className="text-center">REACTBOARD Created by ME!</footer>
       )}
     </>
   );
