@@ -1,4 +1,5 @@
-  body {
+/* GLOBAL STYLES */
+body {
   margin: 0; 
   font-family: "Open Sans", sans-serif;
   font-size: 0.875rem;
@@ -12,7 +13,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-a, a:link, a:visited, a:hover, a:active { text-decoration: none; color: inherit; }
+a, a:link, a:visited, a:hover, a:active { 
+  text-decoration: none; 
+  color: inherit; 
+}
 
 .small-links a { 
   font-size: 13px;  
@@ -38,6 +42,20 @@ input:focus,textarea:focus,.form-control:focus{
   font-style: italic;
 }
 
+.fs-7 {
+  font-size: small;
+}
+
+.fs-8 {
+  font-size: smaller;
+}
+
+/* NAVBAR */
+button.navbar-toggler {
+  border-width: 0;
+}
+
+/* CARDS */
 .card.card-hover-shadow {
   transition: 0.3s;
   box-shadow: 0px 6px 12px rgb(140 152 164 / 8%);
@@ -55,10 +73,11 @@ input:focus,textarea:focus,.form-control:focus{
   -webkit-box-orient: vertical;
 }
 
-.fs-7 {
-  font-size: small;
-}
 
-.fs-8 {
-  font-size: smaller;
+
+/* HOME PAGE */
+
+.hero h2 .emphasis {
+  color: lightblue;
+  font-weight: 400;
 }

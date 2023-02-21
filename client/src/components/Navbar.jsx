@@ -33,14 +33,14 @@ const AppNavbar = () => {
     <div className="flex-grow-1">
       <Navbar position="fixed" expand="md" bg={color} style={{ height: 80 }}>
         <Container fluid="lg">
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          
           <Navbar.Brand href="/">
             <h5 className="align-right me-3 mb-0">
               <span className="p-3">
                 <strong>REACTDEVS</strong>
               </span>
             </h5>
-          </Navbar.Brand>
+          </Navbar.Brand><Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link className="me-3" href="/developers">
