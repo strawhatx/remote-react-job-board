@@ -84,3 +84,9 @@ button.navbar-toggler {
 .login .forgot:hover {
   color: #0d6efd !important
 }
+
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: none !important;
+}

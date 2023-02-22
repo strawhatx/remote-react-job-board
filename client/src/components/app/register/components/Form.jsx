@@ -1,23 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
 import { Button } from "react-bootstrap";
 import { useAuthStore } from "../../../../stores/authentication";
+import { setAuthToken } from "../../../../config/axios";
 import { axios } from "../../../../config/axios";
 
 const RegisterForm = ({ setMessage }) => {
-  const { register } = useAuthStore((state) => ({ register: state.register }));
+  const navigate = useNavigate();
+  
+  const { register, currentUser } = useAuthStore((state) => ({ 
+    register: state.register,
+    currentUser: state.currentUser
+  }));
 
   const schema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string()
-      //.min(6, "Password should be at least 6 characters!")
-      //.uppercase("Password must contain at least 1 uppercase!")
+      .min(5, "Password should be at least 6 characters!")
+      .uppercase("Password must contain at least 1 uppercase!")
       .required("Password is required"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Password Confirmation is required"),
     subscribe: Yup.string(),
     role: Yup.string().oneOf(
       ["DEVELOPER", "COMPANY"], 
@@ -34,8 +38,7 @@ const RegisterForm = ({ setMessage }) => {
       initialValues={{
         email: "",
         password: "",
-        confirmPassword: "",
-        role: "",
+        role: "DEVELOPER",
         subscribe: false,
         acceptTerms: false,
       }}
@@ -50,6 +53,10 @@ const RegisterForm = ({ setMessage }) => {
               isSubscribed: values.subscribe,
             });
           })
+          .then(() => {
+            if(currentUser) setAuthToken(currentUser);
+          })
+          .then(() => navigate("/search"))
           .catch((error) => {
             setMessage({
               title: "ERROR",
@@ -68,10 +75,9 @@ const RegisterForm = ({ setMessage }) => {
               className="btn-check"
               type="radio"
               value="DEVELOPER"
-              checked
             />
             <label 
-            className="btn btn-outline-primary w-full px-5 py-2 tracking-wide me-2" for="dev">Im a JobSeeker</label>
+            className="btn btn-outline-primary w-full px-5 py-2 tracking-wide me-2" htmlFor="dev">Im a JobSeeker</label>
             
             <Field
               id="company"
@@ -79,9 +85,8 @@ const RegisterForm = ({ setMessage }) => {
               className="btn-check"
               type="radio"
               value="COMPANY"
-
             />
-            <label class="btn btn-outline-primary w-full px-5 py-2 tracking-wide" for="company">We're a Company</label>
+            <label className="btn btn-outline-primary w-full px-5 py-2 tracking-wide" htmlFor="company">We're a Company</label>
             
             {errors.role && touched.role ? <div>{errors.role}</div> : null}
           </div>
@@ -117,24 +122,6 @@ const RegisterForm = ({ setMessage }) => {
 
             {errors.password && touched.password ? (
               <div>{errors.password}</div>
-            ) : null}
-          </div>
-
-          <div className="form-group mt-4">
-            <label
-              htmlFor="confirmpassword"
-              className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-            >
-              Confirm Password
-            </label>
-            <Field
-              name="confirmpassword"
-              className="block w-full form-control px-4 py-2 text-gray-700"
-              type="password"
-            />
-
-            {errors.confirmpassword && touched.confirmpassword ? (
-              <div>{errors.confirmpassword}</div>
             ) : null}
           </div>
 

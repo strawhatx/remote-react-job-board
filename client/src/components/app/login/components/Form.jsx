@@ -113,7 +113,7 @@ const LoginForm = ({ setMessage }) => {
               className="w-full px-4 py-2 tracking-wide text-white"
               type="submit"
             >
-              Sign up
+              Sign in
             </Button>
           </div>
         </Form>
