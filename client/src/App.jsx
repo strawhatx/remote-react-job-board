@@ -6,6 +6,7 @@ import Login from "./pages/login/Index";
 import Register from "./pages/register/Index";
 import ForgotPassword from "./pages/forgot-password/Index";
 import UserProfile from "./pages/profile/Index";
+import JobsListView from "./pages/jobs/Index";
 import { ThemeProvider } from "react-bootstrap";
 
 const App = () => {
@@ -63,7 +64,18 @@ const App = () => {
               />
             }
           />
-          
+          <Route
+            exact
+            path="/jobs-list"
+            element={
+              <Layout
+                children={<JobsListView/>}
+                hasNav={true}
+                hasFooter={false}
+              />
+            }
+          />
+
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

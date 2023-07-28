@@ -5,14 +5,17 @@ import UserProfileBasicInfoImage from "./components/Image";
 
 const UserProfileBasicInfo = () => {
   return (
-    <Card classNames="p-3">
-      <div>
+    <>
+      <div className="mb-2">
         <h5 className="fw-bolder">Basic Details</h5>
       </div>
 
-      <UserProfileBasicInfoImage />
-      <UserProfileBasicInfoEmailField />
-    </Card>
+      <Card className="p-3 my-profile">
+        <UserProfileBasicInfoImage />
+        <UserProfileBasicInfoEmailField />
+      </Card>
+    </>
+
   );
 };
 

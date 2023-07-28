@@ -90,3 +90,32 @@ button.navbar-toggler {
   outline: 0;
   box-shadow: none !important;
 }
+
+/* PROFILE */
+
+.profile .my-profile .container .picture .outer {
+  width: 75px !important;
+  height: 75px !important;
+  max-width: 150px !important; /* any size */
+  max-height: 150px !important; /* any size */
+  margin: auto;
+  cursor:pointer;
+  background-color: #ff0000;
+  border-radius: 100%;
+  position: relative;
+  }
+  
+  .profile .my-profile .container .picture .outer .inner {
+  background-color: #0000ff;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.profile .my-profile .container .picture .outer .inner:hover {
+  background-color: #5555ff;
+}

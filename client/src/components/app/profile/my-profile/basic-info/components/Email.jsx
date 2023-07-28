@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import useAuthStore from "../../../../../stores/authentication";
-import { axios } from "../../../../../config/axios";
+import useAuthStore from "../../../../../../stores/authentication";
+import { axios } from "../../../../../../config/axios";
 
 const UserProfileBasicInfoEmailField = () => {
   const [email, setEmail] = useState("");
