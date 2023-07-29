@@ -1,3 +1,4 @@
+import Address from "../models/address";
 import User, { IUser } from "../models/user";
 import { Request, Response, NextFunction } from "express";
 
@@ -128,9 +129,11 @@ export class AccountController {
      */
     async deleteUser(req: Request, res: Response, next: NextFunction) {
         try {
-            let deleted = await User.findByIdAndDelete({ _id: req.params.id });
+            let addressDeleted = await Address.findByIdAndDelete({ _id: req.params.id });
+            
+            let userDeleted = await User.findByIdAndDelete({ _id: req.params.id });
 
-            if (!deleted) throw new Error("Delete failed");
+            if (!addressDeleted || !userDeleted) throw new Error("Delete failed");
 
             res.status(200).json({
                 message: "Delete successful",
