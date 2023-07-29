@@ -96,17 +96,17 @@ button.navbar-toggler {
 .profile .my-profile .container .picture .outer {
   width: 75px !important;
   height: 75px !important;
-  max-width: 150px !important; /* any size */
-  max-height: 150px !important; /* any size */
+  max-width: 75px !important; /* any size */
+  max-height: 75px !important; /* any size */
   margin: auto;
   cursor:pointer;
-  background-color: #ff0000;
+  background-color: #808080;
   border-radius: 100%;
   position: relative;
   }
   
   .profile .my-profile .container .picture .outer .inner {
-  background-color: #0000ff;
+  background-color: #E4E6EB;
   width: 25px;
   height: 25px;
   border-radius: 100%;
@@ -117,5 +117,5 @@ button.navbar-toggler {
 }
 
 .profile .my-profile .container .picture .outer .inner:hover {
-  background-color: #5555ff;
+  background-color: #c2c2c4;
 }
