@@ -42,18 +42,16 @@ const UserProfileBasicInfoImage = () => {
   }, [currentUser?.photoURL]);
 
   return (
-    <>
-      <div className="d-flex align-items-start pt-3 container">
-        <div className="picture">
-          <input accept="image/*" id="profile-upload" type="file" onChange={handleChange} hidden />
-          <label htmlFor="profile-upload" className="outer" style={{ backgroundImage: `url(${photoUrl})` }}>
-            <div className="inner d-flex justify-content-center align-items-center">
-              <img src={camera} width={15} height={15} alt="profile image"/>
-            </div>
-          </label>
-        </div>
+    <div className="container">
+      <div className="picture">
+        <input accept="image/*" id="profile-upload" type="file" onChange={handleChange} hidden />
+        <label htmlFor="profile-upload" className="outer" style={{ backgroundImage: `url(${photoUrl})` }}>
+          <div className="inner d-flex justify-content-center align-items-center">
+            <img src={camera} width={15} height={15} alt="profile image" />
+          </div>
+        </label>
       </div>
-    </>
+    </div>
   );
 };
 

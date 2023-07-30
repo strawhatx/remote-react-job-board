@@ -3,6 +3,7 @@ import { Card, Container, Nav, Tab, Row, Col } from "react-bootstrap";
 import UserProfileBasicInfo from "./my-profile/basic-info/Index";
 import UserProfileDelete from "./delete/Index";
 import UserProfileChangePassword from "./change-password/Index";
+import UserProfilePersonalInformation from "./my-profile/personal-information/Index";
 
 const UserProfileView = () => {
   return (
@@ -50,7 +51,8 @@ const UserProfileView = () => {
                   <Tab.Content>
                     <Tab.Pane eventKey="profile">
                       <div className="profile">
-<UserProfileBasicInfo />
+                      <UserProfileBasicInfo />
+                      <UserProfilePersonalInformation/>
                       <UserProfileChangePassword />
                       <UserProfileDelete />
                       </div>
