@@ -1,27 +1,31 @@
+import Address, { IAddress } from "../models/address";
 import User, { IUser } from "../models/user";
+import Company, { ICompany } from "../models/company";
 import { Request, Response, NextFunction } from "express";
+import { Connection } from "../config/connect";
+import mongoose from "mongoose";
 
 
 
 /**
-* User Controller
+* Address Controller
 */
 
-export class AccountController {
+export class AddressController {
     constructor() { }
 
     /**
-     * Gets users
+     * Gets addresses
      * @param req Request
      * @param res Response
      * @param next Next Function
      */
 
-    async getUsers(req: Request, res: Response, next: NextFunction) {
+    async getAddresses(req: Request, res: Response, next: NextFunction) {
         try {
-            const users = await User.find({});
+            const addresses = await Address.find({});
 
-            res.status(200).json({ users: users })
+            res.status(200).json({ addresses: addresses })
         }
         catch (error: any) {
             throw new Error(error);
@@ -29,16 +33,16 @@ export class AccountController {
     }
 
     /**
-     * Gets specified user by id
+     * Gets specified address by id
      * @param req Request
      * @param res Response
      * @param next Next Function
      */
-    async getUserById(req: Request, res: Response, next: NextFunction) {
+    async getAddressById(req: Request, res: Response, next: NextFunction) {
         try {
-            const user = await User.findById(req.params.id);
+            const address = await Address.findById(req.params.id);
 
-            res.status(200).json({ user: user })
+            res.status(200).json({ address: address })
         }
         catch (error: any) {
             throw new Error(error);
@@ -46,94 +50,74 @@ export class AccountController {
     }
 
     /**
-     * Gets Image for specified user by id
+     * Create Address for either the user ofr company by passing the ref property all caps USER or COMPANY
      * @param req Request
      * @param res Response
      * @param next Next Function
      */
-    async getUsersImageById(req: Request, res: Response, next: NextFunction) {
+    async createAddress(req: Request, res: Response, next: NextFunction) {
+        
+        // Using Mongoose's default connection
+        const session = await mongoose.startSession();
         try {
-            const user = await User.findById(req.params.id);
+            session.startTransaction(); 
 
-            res.status(200).json({ image: user?.profileImage })
-        }
-        catch (error: any) {
-            throw new Error(error);
-        }
-    }
+            const address = await Address.create([{
+                street: req.body.street,
+                city: req.body.city,
+                state: req.body.state,
+                country: req.body.country,
+                phone: req.body.phone,
+                zip: req.body.zip,
+            }],{session});
 
-    /**
-     * Public route create user profile
-     * @param req Request
-     * @param res Response
-     * @param next Next Function
-     */
-    async createUser(req: Request, res: Response, next: NextFunction) {
-        try {
-            let user = {
-                _id: req.body.uid,
-                email: req.body.email,
-                displayName: req.body.email,
-                isSubscribed: req.body.isSubscribed,
-                role: req.body.role,
-            }
+            (req.body.ref == "USER") ? await User.findByIdAndUpdate(req.body.uid, {addressId: address[0]._id}, 
+                {session})
+                : await Company.findByIdAndUpdate(req.body.id, {addressId: address[0]._id},{session});
 
-            const created = await User.create(user);
-
-            if (!created) throw new Error("Create failed");
+                await session.commitTransaction();
 
             res.status(201).json({
                 message: "Create successful",
             });
         }
         catch (error: any) {
+            await session.abortTransaction();
             throw new Error(error);
         }
+
+        session.endSession();
     }
 
     /**
-    * Update User
+    * Update Address
     * @param req Request
     * @param res Response
     * @param next Next Function
     */
-    async updateUser(req: Request, res: Response, next: NextFunction) {
+    async updateAddress(req: Request, res: Response, next: NextFunction) {
         try {
-            let user = { _id: req.body.uid };
+            let address = { _id: req.body.uid };
 
             //only assign feilds that have values
-            if (req.body.email) user = Object.assign(user, { email: req.body.email });
+            if (req.body.street) address = Object.assign(address, { street: req.body.street });
 
-            if (req.body.displayName) user = Object.assign(user, { displayName: req.body.displayName });
+            if (req.body.city) address = Object.assign(address, { city: req.body.city });
 
-            if (req.body.image) user = Object.assign(user, { profileImage: req.body.image });
+            if (req.body.state) address = Object.assign(address, { state: req.body.state });
 
-            const updated = await User.findByIdAndUpdate(user._id, user);
+            if (req.body.country) address = Object.assign(address, { country: req.body.country });
+
+            if (req.body.phone) address = Object.assign(address, { phone: req.body.phone });
+
+            if (req.body.zip) address = Object.assign(address, { zip: req.body.zip });
+
+            const updated = await Address.findByIdAndUpdate(address._id, address);
 
             if (!updated) throw new Error("Update failed");
 
             res.status(204).json({
                 message: "Update successful",
-            });
-        } catch (error: any) {
-            throw new Error(error);
-        }
-    }
-
-
-    /**
-     * Remove User
-     * @param id 
-     * @returns  response message
-     */
-    async deleteUser(req: Request, res: Response, next: NextFunction) {
-        try {
-            let deleted = await User.findByIdAndDelete({ _id: req.params.id });
-
-            if (!deleted) throw new Error("Delete failed");
-
-            res.status(200).json({
-                message: "Delete successful",
             });
         } catch (error: any) {
             throw new Error(error);

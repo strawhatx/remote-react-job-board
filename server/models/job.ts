@@ -11,7 +11,7 @@ export interface IJob {
     salary:string,
     jobType: string,
     skillLevel: string,
-    NumberApplied: number,
+    numberApplied: number,
     description: string,
 }
 
@@ -47,9 +47,9 @@ class JobSchema {
                     type: String,
                     required: true,
                     trim: true,
-                    enum: ['BEGGINNER', 'PROFESSIONAL', 'EXPERT'],
+                    enum: ['BEGINNER', 'PROFESSIONAL', 'EXPERT'],
                 },
-                NumberApplied: {
+                numberApplied: {
                     type: Number,
                     required: [true, "number applied is required"],
                     trim: true,

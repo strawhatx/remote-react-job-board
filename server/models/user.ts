@@ -7,6 +7,7 @@ import validator from 'validator';
 export interface IUser {
     _id: string,
     addressId:string,
+    companyId:string,
     email: string,
     firstName: string,
     lastName: string,
@@ -15,7 +16,7 @@ export interface IUser {
     bio: string,
     position: string,
     isSubscribed: boolean,
-    role: string,
+    role: string
 }
 
 /**
@@ -29,7 +30,8 @@ class UserSchema {
         var schema: Schema<IUser> = new Schema(
             {
                 _id: { type: String, trim: true, required: [true, "id is required"] },
-                addressId: { type: String, trim: true, required: [true, "id is required"] },
+                addressId: { type: String, trim: true, required: false },
+                companyId: { type: String, trim: true, required: false },
                 email: {
                     type: String,
                     //validate: [validator.isEmail, "Please provide a valid email address"],

@@ -7,12 +7,9 @@ const routes = new AddressController();
 
 //router.get("/", CheckAuth, routes.getUsers);
 router.get("/", routes.getAddresses);
-router.get("/:id", routes.getById);
-router.get("/user/:id", routes.getUserAddressById);
-router.get("/user/:id", routes.getUserAddressById);
+router.get("/:id", routes.getAddressById);
 router.put("/", routes.updateAddress);
-router.post("/user", routes.createUserAddress);
-router.post("/company", routes.createCompanyAddress);
+router.post("/", routes.createAddress);
 //router.delete("/:id", routes.deleteUser);
 
 export const AddressRoutes = router;

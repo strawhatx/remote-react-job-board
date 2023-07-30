@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Address from "../models/address";
 import User, { IUser } from "../models/user";
 import { Request, Response, NextFunction } from "express";
@@ -71,17 +72,14 @@ export class AccountController {
      */
     async createUser(req: Request, res: Response, next: NextFunction) {
         try {
-            let user = {
+            const user = await User.create({
                 _id: req.body.uid,
                 email: req.body.email,
-                displayName: req.body.email,
                 isSubscribed: req.body.isSubscribed,
                 role: req.body.role,
-            }
+            });
 
-            const created = await User.create(user);
-
-            if (!created) throw new Error("Create failed");
+            if (!user) throw new Error("Create failed");
 
             res.status(201).json({
                 message: "Create successful",
@@ -102,10 +100,20 @@ export class AccountController {
         try {
             let user = { _id: req.body.uid };
 
+
+
             //only assign feilds that have values
             if (req.body.email) user = Object.assign(user, { email: req.body.email });
+            
+            if (req.body.firstName) user = Object.assign(user, { firstName: req.body.firstName });
+            
+            if (req.body.lastName) user = Object.assign(user, { lastName: req.body.lastName });
+            
+            if (req.body.phone) user = Object.assign(user, { phone: req.body.phone });
 
-            if (req.body.displayName) user = Object.assign(user, { displayName: req.body.displayName });
+            if (req.body.bio) user = Object.assign(user, { bio: req.body.bio });
+            
+            if (req.body.position) user = Object.assign(user, { position: req.body.position });
 
             if (req.body.image) user = Object.assign(user, { profileImage: req.body.image });
 
@@ -128,18 +136,27 @@ export class AccountController {
      * @returns  response message
      */
     async deleteUser(req: Request, res: Response, next: NextFunction) {
+        // Using Mongoose's default connection
+        const session = await mongoose.startSession();
         try {
-            let addressDeleted = await Address.findByIdAndDelete({ _id: req.params.id });
-            
-            let userDeleted = await User.findByIdAndDelete({ _id: req.params.id });
+            session.startTransaction();
 
-            if (!addressDeleted || !userDeleted) throw new Error("Delete failed");
+            const user = await User.findOne({ _id: req.params.id });
+
+            await User.deleteOne({ _id: req.params.id }, { session });
+            await Address.deleteOne({ _id: user?.addressId }, { session });
+
+            await session.commitTransaction();
 
             res.status(200).json({
                 message: "Delete successful",
             });
-        } catch (error: any) {
+        }
+        catch (error: any) {
+            await session.abortTransaction();
             throw new Error(error);
         }
+
+        session.endSession();
     }
 }

@@ -6,7 +6,6 @@ import validator from 'validator';
  */
 export interface IAddress {
     _id: string,
-    type: string,
     street: string
     city: string,
     state: string,
@@ -26,12 +25,6 @@ class AddressSchema {
         var schema: Schema<IAddress> = new Schema(
             {
                 _id: { type: String, trim: true, required: [true, "id is required"] },
-                type: {
-                    type: String,
-                    required: true,
-                    trim: true,
-                    enum: ['HOME', 'BILLING'],
-                },
                 street: {
                     type: String,
                     required: [true, "street is required"],

@@ -25,7 +25,7 @@ class CompanySchema {
         var schema: Schema<ICompany> = new Schema(
             {
                 _id: { type: String, trim: true, required: [true, "id is required"] },
-                addressId: { type: String, trim: true, required: [true, "id is required"] },
+                addressId: { type: String, trim: true, required: false},
                 name: {
                     type: String,
                     required: false,
