@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Button } from "react-bootstrap";
-import useAuthStore from "../../../../../stores/authentication";
 import Editable from "../../../../../Editable";
+import useAuthStore from "../../../../../../stores/authentication";
+import { axios } from "../../../../../../config/axios";
 
 const UserProfilePersonalInformationForm = ({isEditing}) => {
+    const [user, setUser] = useState({})
+    const { currentUser, update } = useAuthStore((state) => ({
+        currentUser: state.currentUser,
+        update: state.updateImage,
+      }));
 
     const schema = Yup.object().shape({
         firstName: Yup.string().required("First name is required"),
@@ -15,23 +21,29 @@ const UserProfilePersonalInformationForm = ({isEditing}) => {
         bio: Yup.string(),
         position: Yup.string(),
     });
+    const getProfile = async() => {
+        let response = await axios.get(`/accounts/${currentUser?.uid}`);
+        setUser(response.user);
+    };
+
+    useEffect(() => {
+        getProfile();
+    },[getProfile])
 
     return (
         <Formik
             initialValues={{
-                firstName: "",
-                lastName: "",
-                email: "",
-                phone: "",
-                bio: "",
-                position: "",
+                firstName: user?.firstName,
+                lastName: user?.lastName,
+                email: user?.email,
+                phone: user?.phone,
+                bio: user?.bio,
+                position: user?.position,
             }}
             validationSchema={schema}
             onSubmit={async (values) => {
                 await update(values.password) //, values.rememberMe || false)
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                    .catch((error) => { console.log(error); });
             }}
         >
             {({ errors, touched }) => (

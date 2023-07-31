@@ -135,10 +135,8 @@ export class JobController {
      * @returns  response message
      */
     async deleteJob(req: Request, res: Response, next: NextFunction) {
-        // Using Mongoose's default connection
-        const session = await mongoose.startSession();
         try {
-            let deleted = await Address.findByIdAndDelete({ _id: req.params.id });
+            let deleted = await Job.findByIdAndDelete({ _id: req.params.id });
         
             if (!deleted) throw new Error("Delete failed");
 
@@ -149,7 +147,5 @@ export class JobController {
         catch (error: any) {
             throw new Error(error);
         }
-
-        session.endSession();
     }
 }

@@ -6,6 +6,9 @@ import cors from "cors"
 import { PORT } from "./"
 import { Connection } from "./connect"
 import { AccountRoutes } from "../routes/account-routes";
+import { AddressRoutes } from "../routes/address-routes";
+import { CompanyRoutes } from "../routes/company-routes";
+import { JobRoutes } from "../routes/job-routes";
 
 export class Server {
     public app: express.Application;
@@ -26,6 +29,10 @@ export class Server {
     */
     public routes(): void {
         this.app.use("/api/accounts", AccountRoutes);
+        this.app.use("/api/addresses", AddressRoutes);
+        this.app.use("/api/companies", CompanyRoutes);
+        this.app.use("/api/jobs", JobRoutes);
+        
     }
 
     /** 

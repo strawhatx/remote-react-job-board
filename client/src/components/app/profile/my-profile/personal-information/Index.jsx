@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, Container, Row } from "react-bootstrap";
-import UserProfilePersonalInformationForm from "./components/from";
+import UserProfilePersonalInformationForm from "./components/Form";
 
 const UserProfilePersonalInformation = () => {
   const [editing, setEditing] = useState(false);
